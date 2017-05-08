@@ -1,0 +1,12 @@
+wine_tracker_web:
+    build: .
+    links:
+        - wine_tracker_db
+    ports:
+        - "3000:3000"
+    volumes:
+        - .:/usr/src/app
+wine_tracker_db:
+    image: mongo
+    ports:
+        - "27017:27017"
