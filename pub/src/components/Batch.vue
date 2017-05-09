@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     addData: function () {
-      this.$http.put('http://127.0.0.1:3000/api/batch/' + this.$route.params.id, {
+      this.$http.put('http://toaster.me/api/batch/' + this.$route.params.id, {
         date: this.newDate,
         specg: parseFloat(this.newSpecG),
         temp: parseFloat(this.newTemp),
@@ -61,7 +61,7 @@ export default {
       })
     },
     getBatches: function () {
-      this.$http.get('http://127.0.0.1:3000/api/batch/' + this.$route.params.id).then(function (response) {
+      this.$http.get('http://toaster.me/api/batch/' + this.$route.params.id).then(function (response) {
         this.batch = response.body
         this.specgData = {
           labels: response.body.dates,

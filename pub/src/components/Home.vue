@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getBatches: function () {
-      this.$http.get('http://127.0.0.1:3000/api/batch').then(function (response) {
+      this.$http.get('http://toaster.me/api/batch').then(function (response) {
         this.batches = response.body
       })
     }
