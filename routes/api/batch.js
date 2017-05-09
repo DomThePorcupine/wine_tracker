@@ -17,6 +17,26 @@ batch.get('/:id', async (req, res) => {
     res.send(batches)
 })
 
+// TODO: This is ugly, I need to fix this
+// Update an existing batch
+batch.put('/:id', async (req, res) => {
+    const tBatch = await Batch.findById(req.params.id)
+    const nDate = req.body.date
+    const nSpecG = req.body.specg
+    const nTemp = req.body.temp
+    tBatch.dates.push(nDate)
+    tBatch.temps.push(nTemp)
+    tBatch.specgrav.push(nSpecG)
+    await tBatch.save()
+    res.send(tBatch)
+})
+
+// Delete an existing batch
+batch.delete('/:id', async (req, res) => {
+    await Batch.findByIdAndRemove(req.params.id)
+    res.sendStatus(202)
+})
+
 // Create a new batch
 batch.post('/', async (req, res) => {
     // TODO check if name was given in the post request
