@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h3>Welcome to Dom's Wine Tracker!</h3>
-    <div class="container">
+    <div class="graph_container">
       <div class="Chart__list">
         <div class="Chart">
-          <h2>Linechart</h2>
-          <line-example :data=graphData :options=graphOpts></line-example>
+          <h2>{{ batch.name }}</h2>
+          <line-example :data=specgData :options=graphOpts></line-example>
+          <div style="padding-top: 50px">
+            <line-example :data=tempData :options=graphOpts></line-example>
+          </div>
         </div>
       </div>
     </div>
@@ -24,14 +26,15 @@ export default {
     return {
       batch: [],
       graphOpts: {responsive: true, maintainAspectRatio: false},
-      graphData: {}
+      specgData: {},
+      tempData: {}
     }
   },
   methods: {
     getBatches: function () {
       this.$http.get('http://127.0.0.1:3000/api/batch/' + this.$route.params.id).then(function (response) {
         this.batch = response.body
-        this.graphData = {
+        this.specgData = {
           labels: response.body.dates,
           datasets: [
             {
@@ -39,6 +42,17 @@ export default {
               backgroundColor: '#7f1a1a',
               fill: false,
               data: response.body.specgrav
+            }
+          ]
+        }
+        this.tempData = {
+          labels: response.body.dates,
+          datasets: [
+            {
+              label: 'Temperature',
+              backgroundColor: '#fffff',
+              fill: false,
+              data: response.body.temps
             }
           ]
         }
@@ -50,3 +64,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.graph_container {
+  max-width: 95%;
+  margin: auto;
+}
+</style>

@@ -6,6 +6,7 @@
           {{ batch._id }} - {{ batch.name }} - <router-link :to="{ name: 'Batch', params: { id: batch._id }}">{{ batch._id }}</router-link>
       </li>
     </ul>
+   <router-link :to="{ name: 'Create' }" class="button">Click here to create a new batch tracker!</router-link>
   </div>
 </template>
 

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 // Defnie our 'batch' object
 const Batch = new Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     specgrav: { type: Array, default: [] },
     temps: { type: Array, default: [] },
     dates: { type: Array, default: [] }

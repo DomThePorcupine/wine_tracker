@@ -29,7 +29,7 @@ app.use(function(req, res, next) {
 app.use('/api', routes)
 
 // Serve the front end app
-//app.use(express.static('pub'))
+app.use(express.static('pub/dist'))
 
 // Start listening on port 3000
 app.listen(3000)
