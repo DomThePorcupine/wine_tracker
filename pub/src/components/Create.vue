@@ -1,7 +1,7 @@
 <template>
   <div>
     <input v-model="newName" placeholder="Name of your new batch">
-    <button  v-on:click="createBatch">Create!</button>
+    <v-btn  v-on:click.native="createBatch">Create!</v-btn>
   </div>
 </template>
 

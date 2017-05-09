@@ -11,11 +11,21 @@
         </div>
       </div>
     </div>
-    <input v-model="newDate" placeholder="Date">
-    <input v-model="newTemp" placeholder="Temperature">
-    <input v-model="newSpecG" placeholder="Specific Gravity">
-    <input v-model="key" placeholder="Key">
-    <button  v-on:click="addData">Add!</button>
+    <div style="width: 80%; padding-top: 25px; margin: auto">
+      <input v-model="newDate" placeholder="Date">
+    </div>
+    <div style="width: 80%; padding-top: 25px; margin: auto">
+      <input v-model="newTemp" placeholder="Temperature">
+    </div>
+    <div style="width: 80%; padding-top: 25px; margin: auto">
+      <input v-model="newSpecG" placeholder="Specific Gravity">
+    </div>
+    <div style="width: 80%; padding-top: 25px; margin: auto">
+      <input v-model="key" placeholder="Key">
+    </div>
+
+    <v-btn  v-on:click.native="addData">Add!</v-btn>
+  
   </div>
 </template>
 

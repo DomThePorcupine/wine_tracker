@@ -7,6 +7,7 @@
       </li>
     </ul>
    <router-link :to="{ name: 'Create' }" class="button">Click here to create a new batch tracker!</router-link>
+   <v-btn-link @click.native="$dialog('Toast!')">Toast!</v-btn-link>
   </div>
 </template>
 
