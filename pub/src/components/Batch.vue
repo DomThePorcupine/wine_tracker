@@ -11,6 +11,11 @@
         </div>
       </div>
     </div>
+    <input v-model="newDate" placeholder="Date">
+    <input v-model="newTemp" placeholder="Temperature">
+    <input v-model="newSpecG" placeholder="Specific Gravity">
+    <input v-model="key" placeholder="Key">
+    <button  v-on:click="addData">Add!</button>
   </div>
 </template>
 
@@ -27,10 +32,24 @@ export default {
       batch: [],
       graphOpts: {responsive: true, maintainAspectRatio: false},
       specgData: {},
-      tempData: {}
+      tempData: {},
+      newDate: '',
+      newTemp: '',
+      newSpecG: '',
+      key: ''
     }
   },
   methods: {
+    addData: function () {
+      this.$http.put('http://127.0.0.1:3000/api/batch/' + this.$route.params.id, {
+        date: this.newDate,
+        specg: parseFloat(this.newSpecG),
+        temp: parseFloat(this.newTemp),
+        key: this.key
+      }).then(function (response) {
+        this.getBatches()
+      })
+    },
     getBatches: function () {
       this.$http.get('http://127.0.0.1:3000/api/batch/' + this.$route.params.id).then(function (response) {
         this.batch = response.body

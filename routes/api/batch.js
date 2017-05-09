@@ -20,6 +20,7 @@ batch.get('/:id', async (req, res) => {
 // TODO: This is ugly, I need to fix this
 // Update an existing batch
 batch.put('/:id', async (req, res) => {
+    // TODO: check key so friends won't mess with me
     const tBatch = await Batch.findById(req.params.id)
     const nDate = req.body.date
     const nSpecG = req.body.specg

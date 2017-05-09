@@ -16,7 +16,7 @@
     methods: {
       createBatch: function () {
         this.$http.post('http://127.0.0.1:3000/api/batch', { name: this.newName }).then(function (response) {
-          this.$router.go(-1)
+          this.$router.push('/')
         })
       }
     }
