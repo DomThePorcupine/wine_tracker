@@ -1,9 +1,9 @@
 <template>
   <div>
+    <h2>{{ batch.name }}</h2>
     <div class="graph_container">
       <div class="Chart__list">
         <div class="Chart">
-          <h2>{{ batch.name }}</h2>
           <line-example :data=specgData :options=graphOpts></line-example>
           <div style="padding-top: 50px">
             <line-example :data=tempData :options=graphOpts></line-example>
@@ -11,26 +11,38 @@
         </div>
       </div>
     </div>
-    <div style="width: 80%; padding-top: 25px; margin: auto">
-      <input v-model="newDate" placeholder="Date">
+    <div class="input_container">
+      <form style="width: 500px;" novalidate @submit.stop.prevent="addData">
+        <md-input-container>
+          <label>Date (ex: "05/12")</label>
+          <md-input v-model="newDate"></md-input>
+        </md-input-container>
+        <md-input-container>
+          <label>Temperature</label>
+          <md-input v-model="newTemp"></md-input>
+        </md-input-container>
+        <md-input-container>
+          <label>Specific Gravity</label>
+          <md-input v-model="newSpecG"></md-input>
+        </md-input-container>
+        <md-input-container>
+          <label>Key</label>
+          <md-input v-model="key"></md-input>
+        </md-input-container>
+      </form>
+      
+      <div style="width: 80%; padding-top: 25px; margin: auto">
+        <md-button v-on:click.native="addData" class="md-raised md-primary">Add!</md-button>
+      </div>
+      
     </div>
-    <div style="width: 80%; padding-top: 25px; margin: auto">
-      <input v-model="newTemp" placeholder="Temperature">
-    </div>
-    <div style="width: 80%; padding-top: 25px; margin: auto">
-      <input v-model="newSpecG" placeholder="Specific Gravity">
-    </div>
-    <div style="width: 80%; padding-top: 25px; margin: auto">
-      <input v-model="key" placeholder="Key">
-    </div>
-
-    <v-btn  v-on:click.native="addData">Add!</v-btn>
   
   </div>
 </template>
 
 <script>
 import LineExample from './LineChart.js'
+import API from './api.js'
 
 export default {
   name: 'batch',
@@ -51,7 +63,7 @@ export default {
   },
   methods: {
     addData: function () {
-      this.$http.put('http://toaster.me/api/batch/' + this.$route.params.id, {
+      this.$http.put(API + '/api/batch/' + this.$route.params.id, {
         date: this.newDate,
         specg: parseFloat(this.newSpecG),
         temp: parseFloat(this.newTemp),
@@ -61,7 +73,7 @@ export default {
       })
     },
     getBatches: function () {
-      this.$http.get('http://toaster.me/api/batch/' + this.$route.params.id).then(function (response) {
+      this.$http.get(API + '/api/batch/' + this.$route.params.id).then(function (response) {
         this.batch = response.body
         this.specgData = {
           labels: response.body.dates,
@@ -96,7 +108,11 @@ export default {
 
 <style>
 .graph_container {
-  max-width: 95%;
-  margin: auto;
+  width: 80%;
+  float: left;
+}
+.input_container {
+  width: 20%;
+  float: right;
 }
 </style>
