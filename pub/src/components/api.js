@@ -1,3 +1,3 @@
-const API = 'http://127.0.0.1:3000'
+const API = 'http://toaster.me'
 
 module.exports = API

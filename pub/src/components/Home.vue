@@ -4,7 +4,14 @@
     <div class="phone-viewport">
       <md-list>
         <md-list-item v-for="batch in batches" :key="batch._id">
-         <router-link :to="{ name: 'Batch', params: { id: batch._id }}"><md-icon>timeline</md-icon>{{ batch.name }}</router-link>
+          <md-icon>timeline</md-icon>
+          <div class="md-list-text-container">
+            <router-link :to="{ name: 'Batch', params: { id: batch._id }}">
+                <span style="float: left;"> {{ batch.name }}</span></router-link>
+            </div>
+            <md-button style="float: right;" v-on:click.native="deleteBatch(batch._id)">
+              <md-icon>delete</md-icon>
+            </md-button>
          <md-divider></md-divider>
         </md-list-item>
       </md-list>
@@ -33,9 +40,12 @@ export default {
         this.batches = response.body
       })
     },
-    goToCreate: function () {
-      this.$router.push('/create')
+    deleteBatch: function (id) {
+      this.$http.delete(API + '/api/batch/' + id).then(function (response) {
+        this.getBatches()
+      })
     }
+
   },
   created: function () {
     this.getBatches()
