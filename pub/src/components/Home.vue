@@ -8,7 +8,7 @@
           <div class="md-list-text-container">
             <router-link :to="{ name: 'Batch', params: { id: batch._id }}">
                 <span style="float: left;"> {{ batch.name }}</span></router-link>
-            </div>
+          </div>
             <md-button style="float: right;" v-on:click.native="deleteBatch(batch._id)">
               <md-icon>delete</md-icon>
             </md-button>
@@ -16,6 +16,7 @@
         </md-list-item>
       </md-list>
     </div>
+
 
     <md-button href="#/create" class="md-fab md-fab-bottom-right md-primary">
       <md-icon>add</md-icon>
@@ -54,11 +55,8 @@ export default {
 </script>
 
 <style>
-#float_action_button {
-  float: right;
-  position: absolute;
-  right:20;
-  bottom:20;
+#floater {
+  padding-bottom: 100px;
 }
 </style>
 

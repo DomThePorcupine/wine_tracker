@@ -4,13 +4,14 @@
     <div class="graph_container">
       <div class="Chart__list">
         <div class="Chart">
-          <line-example :data=specgData :options=graphOpts></line-example>
+          <line-example :data="specgData" :options="graphOpts"></line-example>
           <div style="padding-top: 50px">
-            <line-example :data=tempData :options=graphOpts></line-example>
+            <line-example :data="tempData" :options="graphOpts"></line-example>
           </div>
         </div>
       </div>
     </div>
+
     <div class="input_container">
       <form style="width: 500px;" novalidate @submit.stop.prevent="addData">
         <md-input-container>
@@ -52,7 +53,7 @@ export default {
   data () {
     return {
       batch: [],
-      graphOpts: {responsive: true, maintainAspectRatio: false},
+      graphOpts: {responsive: true, maintainAspectRatio: true},
       specgData: {},
       tempData: {},
       newDate: '',
@@ -111,8 +112,23 @@ export default {
   width: 80%;
   float: left;
 }
+@media only screen and (max-device-width: 480px) {
+  /* define mobile specific styles come here */
+  .graph_container {
+    width: 80%;
+    margin: 0;
+  }
+}
+
 .input_container {
   width: 20%;
   float: right;
+}
+@media only screen and (max-device-width: 480px) {
+  /* define mobile specific styles come here */
+  .input_container {
+    width: 80%;
+    margin: auto;
+  }
 }
 </style>
