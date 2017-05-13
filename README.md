@@ -1,4 +1,4 @@
-## Wine tracking app
+# Wine tracking app
 
 So I like making wine, and often it is useful to
 track how the fermentation process is going. I
@@ -6,18 +6,18 @@ originally used excel, but I can't stand
 excel/libre office/google sheets so it was time
 for a new project. 
 
-# The backend
+## The backend
 
 The backend of this app is written in nodejs with express 4. 
 Importantly it utalises `async/await` and mongoose + bluebird promises
 to interface with mongodb.
 
-# The frontend
+## The frontend
 
 The frontend is served with `express.static`. It is written in vue.js,
 and uses a couple of libraries for chart.js and a material design look.
 
-## So how do I get a local version up and running?
+# So how do I get a local version up and running?
 
 Start by cd'ing into the pub directory. Once there you will need to run
 `npm install` and then `npm run build`, this will install all the necessary
