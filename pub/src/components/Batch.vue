@@ -1,19 +1,11 @@
 <template>
   <div>
+
+
     <h2>{{ batch.name }}</h2>
-    <div class="graph_container">
-      <div class="Chart__list">
-        <div class="Chart">
-          <line-example :data="specgData" :options="graphOpts"></line-example>
-          <div style="padding-top: 50px">
-            <line-example :data="tempData" :options="graphOpts"></line-example>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="input_container">
-      <form style="width: 500px;" novalidate @submit.stop.prevent="addData">
+      <form novalidate @submit.stop.prevent="addData">
         <md-input-container>
           <label>Date (ex: "05/12")</label>
           <md-input v-model="newDate"></md-input>
@@ -31,13 +23,24 @@
           <md-input v-model="key"></md-input>
         </md-input-container>
       </form>
-      
+
       <div style="width: 80%; padding-top: 25px; margin: auto">
         <md-button v-on:click.native="addData" class="md-raised md-primary">Add!</md-button>
       </div>
-      
+
     </div>
-  
+
+    <div class="graph_container">
+      <div class="Chart__list">
+        <div class="Chart">
+          <line-example :data="specgData" :options="graphOpts"></line-example>
+          <div>
+            <line-example :data="tempData" :options="graphOpts"></line-example>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -53,7 +56,7 @@ export default {
   data () {
     return {
       batch: [],
-      graphOpts: {responsive: true, maintainAspectRatio: true},
+      graphOpts: {responsive: true, maintainAspectRatio: false},
       specgData: {},
       tempData: {},
       newDate: '',
@@ -109,26 +112,54 @@ export default {
 
 <style>
 .graph_container {
-  width: 80%;
+  width: 70%;
   float: left;
-}
-@media only screen and (max-device-width: 480px) {
-  /* define mobile specific styles come here */
-  .graph_container {
-    width: 80%;
-    margin: 0;
-  }
+  margin: 30px;
 }
 
 .input_container {
   width: 20%;
   float: right;
 }
-@media only screen and (max-device-width: 480px) {
+
+.Chart div{
+  margin-top: 20px;
+  width: 100%;
+  height: 500px;
+}
+
+.Chart div:first-child{
+  margin-top: 5%;
+}
+
+@media only screen and (max-width: 776px) {
+  /* define mobile specific styles come here */
+  .graph_container {
+    width: 90%;
+    margin: 0;
+    float: none;
+  }
+
+  .input_container {
+    width: 50%;
+    float: none;
+    margin: 0 auto;
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
   /* define mobile specific styles come here */
   .input_container {
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    height: 370px;
+    margin: 0 auto;
   }
+
+  .Chart div{
+    margin-top: 30px;
+    height: 300px;
+  }
+
 }
 </style>
