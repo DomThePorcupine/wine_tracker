@@ -2,13 +2,13 @@
 
 So I like making wine, and often it is useful to
 track how the fermentation process is going. I
-originally used excel, but I can't stand 
+originally used excel, but I can't stand
 excel/libre office/google sheets so it was time
-for a new project. 
+for a new project.
 
 ## The backend
 
-The backend of this app is written in nodejs with express 4. 
+The backend of this app is written in nodejs with express 4.
 Importantly it utalises `async/await` and mongoose + bluebird promises
 to interface with mongodb.
 
@@ -34,4 +34,8 @@ you should do for local development is to change the string in `pub/src/componen
 to point to your local development URL, http://127.0.0.1:3000. This way you are not
 making API calls to the public server.
 
+## Contributors
 
+Dom DiPasquale - Idea and Backend
+
+Eric Ghildyal - Frontend

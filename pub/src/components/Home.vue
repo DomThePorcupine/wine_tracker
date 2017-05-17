@@ -1,13 +1,13 @@
 <template>
   <div id="main">
-    <h3 style="text-align: center;">Welcome to Dom's Wine Tracker!</h3>
+    <h3>Welcome to Dom's Wine Tracker!</h3>
     <div class="phone-viewport">
       <md-list>
         <md-list-item v-for="batch in batches" :key="batch._id">
-          <md-icon>timeline</md-icon>
           <div class="md-list-text-container">
             <router-link :to="{ name: 'Batch', params: { id: batch._id }}">
-                <span style="float: left;"> {{ batch.name }}</span></router-link>
+            <img class="bottle" src="../assets/bottle.svg"> </img>
+            <span> {{ batch.name }}</span></router-link>
           </div>
             <md-button style="float: right;" v-on:click.native="deleteBatch(batch._id)">
               <md-icon>delete</md-icon>
@@ -55,12 +55,53 @@ export default {
 </script>
 
 <style>
+
+img{
+  height: 15px;
+  width: 15px;
+  margin-right: 35px;
+  margin-bottom: 5px;
+  margin-left: 35px
+}
+
+span{
+  font-size: 18px;
+}
+
+.md-list-item-container{
+  min-height: 45px !important;
+  margin-top: 25px !important;
+  padding: 10px !important;
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.md-list-item-container img{
+  transform: rotate(90deg);
+}
+
+.md-list-item-container:hover{
+  background-color: rgba(119, 136, 153, 0.5);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.md-ink-ripple{
+  display: none;
+}
+
+.md-button:hover:not([disabled]):not(.md-raised):hover{
+  background-color: #ffffff;
+}
+
 #floater {
   padding-bottom: 100px;
 }
-</style>
 
-<style>
 #main {
   width: 80%;
   margin: auto;
